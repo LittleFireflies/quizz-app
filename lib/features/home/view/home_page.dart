@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_primary_button.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_secondary_button.dart';
+import 'package:quizz_app/features/topics/view/topics_page.dart';
 import 'package:quizz_app/theme/typography.dart';
 
 class HomePage extends StatelessWidget {
+  static const routeName = 'homePage';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -38,7 +41,9 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             QuizzSecondaryButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, TopicsPage.routeName);
+              },
               label: 'TOPICS',
             ),
           ],
