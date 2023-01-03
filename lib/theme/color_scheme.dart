@@ -24,3 +24,8 @@ class QuizzAppColorScheme {
     onPrimary: Colors.black,
   );
 }
+
+extension QuizzAppColorSchemeExtension on ColorScheme {
+  Color get green => Colors.green;
+  Color get red => Colors.red;
+}

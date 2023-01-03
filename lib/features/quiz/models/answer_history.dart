@@ -18,3 +18,13 @@ class AnswerHistory extends Equatable {
         correctAnswer,
       ];
 }
+
+extension AnswerHistoryListExt on List<AnswerHistory> {
+  int getCorrectAnswerCount() {
+    return where((element) => element.answer == element.correctAnswer).length;
+  }
+
+  int getWrongAnswerCount() {
+    return where((element) => element.answer != element.correctAnswer).length;
+  }
+}
