@@ -4,6 +4,7 @@ import 'package:quizz_app/features/quiz/models/answer_history.dart';
 import 'package:quizz_app/features/quiz_result/widgets/answer_history_view.dart';
 import 'package:quizz_app/theme/color_scheme.dart';
 import 'package:quizz_app/theme/typography.dart';
+import 'package:share_plus/share_plus.dart';
 
 class QuizResultPage extends StatelessWidget {
   static const routeName = 'quizResultPage';
@@ -53,7 +54,9 @@ class QuizResultPage extends StatelessWidget {
                   const SizedBox(height: 32),
                   ElevatedButton(
                     child: const Text('Share your score'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Share.share(_getShareText(quizResults));
+                    },
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -79,5 +82,9 @@ class QuizResultPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getShareText(List<AnswerHistory> results) {
+    return 'Hey, I got ${results.getCorrectAnswerCount()}/${results.length} score on Quizz App. How about you?';
   }
 }
