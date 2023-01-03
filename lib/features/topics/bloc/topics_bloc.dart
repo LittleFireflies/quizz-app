@@ -18,7 +18,7 @@ class TopicsBloc extends Bloc<TopicsEvent, TopicsState> {
         final topics = await _quizRepository.loadTopics();
 
         if (topics.isNotEmpty) {
-          emit(TopicsLoaded(topics));
+          emit(TopicsLoaded(topics.map((topic) => topic.name).toList()));
         } else {
           emit(const TopicsLoadedEmpty());
         }

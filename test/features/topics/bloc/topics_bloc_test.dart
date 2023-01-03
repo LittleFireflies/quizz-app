@@ -4,6 +4,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:quizz_app/features/topics/bloc/topics_bloc.dart';
 import 'package:quizz_app/repositories/quiz_repository.dart';
 
+import '../../../helpers/test_models.dart';
+
 class MockQuizRepository extends Mock implements QuizRepository {}
 
 void main() {
@@ -11,7 +13,7 @@ void main() {
     late QuizRepository quizRepository;
     late TopicsBloc topicsBloc;
 
-    const topics = ['Topic A', 'Topic B'];
+    const topics = [TestModels.topicA, TestModels.topicB];
 
     final exception = Exception('Error!');
 
@@ -31,7 +33,7 @@ void main() {
       act: (bloc) => bloc.add(const LoadTopics()),
       expect: () => [
         const TopicsLoading(),
-        const TopicsLoaded(topics),
+        TopicsLoaded([topics[0].name, topics[1].name]),
       ],
       verify: (_) {
         verify(() => quizRepository.loadTopics()).called(1);
