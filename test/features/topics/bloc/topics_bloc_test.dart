@@ -33,7 +33,7 @@ void main() {
       act: (bloc) => bloc.add(const LoadTopics()),
       expect: () => [
         const TopicsLoading(),
-        TopicsLoaded([topics[0].name, topics[1].name]),
+        TopicsLoaded(topics),
       ],
       verify: (_) {
         verify(() => quizRepository.loadTopics()).called(1);

@@ -12,7 +12,7 @@ class TopicsLoading extends TopicsState {
 }
 
 class TopicsLoaded extends TopicsState {
-  final List<String> topics;
+  final List<Topic> topics;
 
   const TopicsLoaded(this.topics);
 

@@ -8,6 +8,8 @@ import 'package:quizz_app/features/topics/bloc/topics_bloc.dart';
 import 'package:quizz_app/features/topics/view/topics_empty_view.dart';
 import 'package:quizz_app/features/topics/view/topics_page.dart';
 
+import '../../../helpers/test_models.dart';
+
 class MockTopicsBloc extends MockBloc<TopicsEvent, TopicsState>
     implements TopicsBloc {}
 
@@ -15,7 +17,7 @@ void main() {
   group('TopicsPage', () {
     late TopicsBloc topicsBloc;
 
-    const topics = ['Topic A', 'Topic B'];
+    const topics = [TestModels.topicA, TestModels.topicB];
 
     setUp(() {
       topicsBloc = MockTopicsBloc();

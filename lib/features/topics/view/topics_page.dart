@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_error_view.dart';
 import 'package:quizz_app/features/topics/bloc/topics_bloc.dart';
 import 'package:quizz_app/features/topics/view/topics_empty_view.dart';
+import 'package:quizz_app/features/view/quiz_page.dart';
 import 'package:quizz_app/repositories/quiz_repository_impl.dart';
 
 class TopicsPage extends StatelessWidget {
@@ -39,11 +40,18 @@ class TopicsView extends StatelessWidget {
             if (state is TopicsLoaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final topicName = state.topics[index];
+                  final topic = state.topics[index];
                   return Card(
                     child: ListTile(
-                      title: Text(topicName),
+                      title: Text(topic.name),
                       trailing: const Icon(Icons.play_arrow),
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          QuizPage.routeName,
+                          arguments: topic.key,
+                        );
+                      },
                     ),
                   );
                 },

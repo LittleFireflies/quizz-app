@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_primary_button.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_secondary_button.dart';
 import 'package:quizz_app/features/topics/view/topics_page.dart';
+import 'package:quizz_app/features/view/quiz_page.dart';
 import 'package:quizz_app/theme/typography.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,7 +37,9 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 36),
             QuizzPrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, QuizPage.routeName);
+              },
               label: 'PLAY',
             ),
             const SizedBox(height: 8),
