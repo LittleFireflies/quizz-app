@@ -5,12 +5,14 @@ class QuizState extends Equatable {
   final int activeQuestionIndex;
   final String selectedAnswer;
   final bool isLastQuestion;
+  final List<AnswerHistory> quizResult;
 
   const QuizState({
     required this.questions,
     required this.activeQuestionIndex,
     this.selectedAnswer = '',
     this.isLastQuestion = false,
+    required this.quizResult,
   });
 
   @override
@@ -19,6 +21,7 @@ class QuizState extends Equatable {
         activeQuestionIndex,
         selectedAnswer,
         isLastQuestion,
+        quizResult,
       ];
 
   QuizState copyWith({
@@ -26,12 +29,14 @@ class QuizState extends Equatable {
     int? activeQuestionIndex,
     String? selectedAnswer,
     bool? isLastQuestion,
+    List<AnswerHistory>? quizResult,
   }) {
     return QuizState(
       questions: questions ?? this.questions,
       activeQuestionIndex: activeQuestionIndex ?? this.activeQuestionIndex,
       selectedAnswer: selectedAnswer ?? this.selectedAnswer,
       isLastQuestion: isLastQuestion ?? this.isLastQuestion,
+      quizResult: quizResult ?? this.quizResult,
     );
   }
 }
