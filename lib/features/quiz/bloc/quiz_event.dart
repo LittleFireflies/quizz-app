@@ -28,3 +28,10 @@ class OpenNextQuestion extends QuizEvent {
   @override
   List<Object?> get props => [];
 }
+
+class SeeResults extends QuizEvent {
+  const SeeResults();
+
+  @override
+  List<Object?> get props => [];
+}

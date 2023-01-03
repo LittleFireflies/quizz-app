@@ -43,9 +43,9 @@ class QuizView extends StatelessWidget {
         title: const Text('Quiz Page'),
       ),
       body: BlocConsumer<SetupQuizBloc, SetupQuizState>(
-        listener: (p, c) {
-          if (c is QuizLoaded) {
-            context.read<QuizBloc>().add(InitQuiz(c.questions));
+        listener: (contect, state) {
+          if (state is QuizLoaded) {
+            context.read<QuizBloc>().add(InitQuiz(state.questions));
           }
         },
         builder: (context, state) {

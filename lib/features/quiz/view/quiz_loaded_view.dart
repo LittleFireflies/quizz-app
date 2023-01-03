@@ -4,6 +4,7 @@ import 'package:quizz_app/core/shared_widgets/quizz_primary_button.dart';
 import 'package:quizz_app/features/quiz/bloc/quiz_bloc.dart';
 import 'package:quizz_app/features/quiz/widgets/answer_card.dart';
 import 'package:quizz_app/features/quiz/widgets/question_card.dart';
+import 'package:quizz_app/features/quiz_result/view/quiz_result_page.dart';
 import 'package:quizz_app/services/firestore/models/question.dart';
 import 'package:quizz_app/theme/theme.dart';
 
@@ -17,7 +18,17 @@ class QuizLoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QuizBloc, QuizState>(
+    return BlocConsumer<QuizBloc, QuizState>(
+      listenWhen: (p, c) => c.isFinished,
+      listener: (context, state) {
+        if (state.isFinished) {
+          Navigator.pushReplacementNamed(
+            context,
+            QuizResultPage.routeName,
+            arguments: state.quizResult,
+          );
+        }
+      },
       builder: (context, state) {
         final activeQuestion = state.questions[state.activeQuestionIndex];
 
@@ -58,7 +69,7 @@ class QuizLoadedView extends StatelessWidget {
                           ? context
                               .read<QuizBloc>()
                               .add(const OpenNextQuestion())
-                          : context.read<QuizBloc>().add(const InitQuiz([])),
+                          : context.read<QuizBloc>().add(const SeeResults()),
                     ),
                   ),
                 ],

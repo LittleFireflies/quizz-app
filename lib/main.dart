@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/utils/quizz_randomizer.dart';
 import 'package:quizz_app/features/home/view/home_page.dart';
 import 'package:quizz_app/features/quiz/view/quiz_page.dart';
+import 'package:quizz_app/features/quiz_result/view/quiz_result_page.dart';
 import 'package:quizz_app/features/topics/view/topics_page.dart';
 import 'package:quizz_app/firebase_options.dart';
 import 'package:quizz_app/repositories/quiz_repository_impl.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                 builder: (context) => QuizPage(topic: topic),
               );
+            case QuizResultPage.routeName:
+              return MaterialPageRoute(
+                  builder: (context) => const QuizResultPage());
             default:
               return MaterialPageRoute(builder: (_) {
                 return const Scaffold(

@@ -123,5 +123,56 @@ void main() {
         ),
       ],
     );
+
+    blocTest<QuizBloc, QuizState>(
+      'should emit state finished as true '
+      'when SeeResults is added',
+      build: () => quizBloc,
+      seed: () => QuizState(
+        questions: questions,
+        activeQuestionIndex: 2,
+        selectedAnswer: 'Molecule',
+        isLastQuestion: true,
+        quizResult: [
+          AnswerHistory(
+            question: TestModels.question1.question,
+            answer: 'Apples',
+            correctAnswer: TestModels.question1.correctAnswer,
+          ),
+          AnswerHistory(
+            question: TestModels.question2.question,
+            answer: '',
+            correctAnswer: TestModels.question2.correctAnswer,
+          ),
+        ],
+      ),
+      act: (bloc) => bloc.add(const SeeResults()),
+      expect: () => [
+        QuizState(
+          questions: questions,
+          activeQuestionIndex: 2,
+          selectedAnswer: '',
+          isLastQuestion: true,
+          isFinished: true,
+          quizResult: [
+            AnswerHistory(
+              question: TestModels.question1.question,
+              answer: 'Apples',
+              correctAnswer: TestModels.question1.correctAnswer,
+            ),
+            AnswerHistory(
+              question: TestModels.question2.question,
+              answer: '',
+              correctAnswer: TestModels.question2.correctAnswer,
+            ),
+            AnswerHistory(
+              question: TestModels.question3.question,
+              answer: 'Molecule',
+              correctAnswer: TestModels.question3.correctAnswer,
+            ),
+          ],
+        ),
+      ],
+    );
   });
 }
