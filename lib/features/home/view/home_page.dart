@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_primary_button.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_secondary_button.dart';
+import 'package:quizz_app/features/quiz/view/quiz_page.dart';
 import 'package:quizz_app/features/topics/view/topics_page.dart';
-import 'package:quizz_app/features/view/quiz_page.dart';
 import 'package:quizz_app/theme/typography.dart';
 
 class HomePage extends StatelessWidget {

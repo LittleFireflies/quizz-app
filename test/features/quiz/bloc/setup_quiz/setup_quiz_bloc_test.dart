@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quizz_app/core/utils/quizz_randomizer.dart';
-import 'package:quizz_app/features/bloc/setup_quiz/setup_quiz_bloc.dart';
+import 'package:quizz_app/features/quiz/bloc/setup_quiz/setup_quiz_bloc.dart';
 import 'package:quizz_app/repositories/quiz_repository.dart';
 
 import '../../../../helpers/test_models.dart';

@@ -20,6 +20,18 @@ class Question extends Equatable {
     required this.correctAnswer,
   });
 
+  factory Question.placeholder() {
+    return const Question(
+      key: 'key',
+      question: 'Question',
+      option1: 'option1',
+      option2: 'option2',
+      option3: 'option3',
+      option4: 'option4',
+      correctAnswer: 'correctAnswer',
+    );
+  }
+
   factory Question.fromFirestore(
     QueryDocumentSnapshot<Map<String, dynamic>> doc,
   ) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_error_view.dart';
+import 'package:quizz_app/features/quiz/view/quiz_page.dart';
 import 'package:quizz_app/features/topics/bloc/topics_bloc.dart';
 import 'package:quizz_app/features/topics/view/topics_empty_view.dart';
-import 'package:quizz_app/features/view/quiz_page.dart';
 import 'package:quizz_app/repositories/quiz_repository_impl.dart';
 
 class TopicsPage extends StatelessWidget {

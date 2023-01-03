@@ -31,4 +31,14 @@ class TestModels {
     option4: 'Jupiter',
     correctAnswer: 'Moon',
   );
+
+  static const question3 = Question(
+    key: 'Q-3',
+    question: "What is a group of atoms called?",
+    option1: 'Proton',
+    option2: 'Neutron',
+    option3: 'Molecule',
+    option4: 'Bond',
+    correctAnswer: 'Molecule',
+  );
 }

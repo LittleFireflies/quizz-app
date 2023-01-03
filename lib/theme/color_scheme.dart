@@ -20,5 +20,7 @@ class QuizzAppColorScheme {
     brightness: Brightness.light,
     surface: Colors.white,
     onSurface: Colors.black,
+    primary: Colors.white,
+    onPrimary: Colors.black,
   );
 }
