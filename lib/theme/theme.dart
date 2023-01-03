@@ -16,4 +16,10 @@ class QuizzAppTheme {
       textTheme: GoogleFonts.interTextTheme(themeData.textTheme),
     );
   }
+
+  static ThemeData createQuizCardTheme() {
+    return applyAllStyles(
+      ThemeData.from(colorScheme: QuizzAppColorScheme.quizCardColorScheme),
+    );
+  }
 }

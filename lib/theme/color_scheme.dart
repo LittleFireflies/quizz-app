@@ -15,4 +15,10 @@ class QuizzAppColorScheme {
     surface: QuizzAppColors.midnightBlue,
     onSurface: Colors.white,
   );
+
+  static final quizCardColorScheme = QuizzAppColorScheme.colorScheme.copyWith(
+    brightness: Brightness.light,
+    surface: Colors.white,
+    onSurface: Colors.black,
+  );
 }
