@@ -39,14 +39,15 @@ class TopicsView extends StatelessWidget {
             if (state is TopicsLoaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  return const Card(
+                  final topicName = state.topics[index];
+                  return Card(
                     child: ListTile(
-                      title: Text('Topics'),
-                      trailing: Icon(Icons.chevron_right),
+                      title: Text(topicName),
+                      trailing: const Icon(Icons.play_arrow),
                     ),
                   );
                 },
-                itemCount: 4,
+                itemCount: state.topics.length,
               );
             } else if (state is TopicsLoadedEmpty) {
               return const TopicsEmptyView();

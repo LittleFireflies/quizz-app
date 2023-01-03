@@ -5,6 +5,7 @@ import 'package:quizz_app/features/home/view/home_page.dart';
 import 'package:quizz_app/features/topics/view/topics_page.dart';
 import 'package:quizz_app/firebase_options.dart';
 import 'package:quizz_app/repositories/quiz_repository_impl.dart';
+import 'package:quizz_app/services/firestore/firestore_service.dart';
 import 'package:quizz_app/theme/theme.dart';
 
 void main() async {
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => QuizRepositoryImpl(),
+      create: (context) => QuizRepositoryImpl(
+        firestoreService: FirestoreService(),
+      ),
       child: MaterialApp(
         title: 'Quizz App',
         theme: QuizzAppTheme.mainTheme(),
