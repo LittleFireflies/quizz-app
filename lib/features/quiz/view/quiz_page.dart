@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_error_view.dart';
+import 'package:quizz_app/core/shared_widgets/quizz_text_button.dart';
 import 'package:quizz_app/core/utils/quizz_randomizer.dart';
 import 'package:quizz_app/features/quiz/bloc/quiz_bloc.dart';
 import 'package:quizz_app/features/quiz/bloc/setup_quiz/setup_quiz_bloc.dart';
@@ -38,29 +39,58 @@ class QuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quiz Page'),
-      ),
-      body: BlocConsumer<SetupQuizBloc, SetupQuizState>(
-        listener: (context, state) {
-          if (state is QuizLoaded) {
-            context.read<QuizBloc>().add(InitQuiz(state.questions));
-          }
-        },
-        builder: (context, state) {
-          if (state is QuizLoaded) {
-            return QuizLoadedView(
-              questions: state.questions,
-            );
-          } else if (state is QuizLoadError) {
-            return QuizzErrorView(errorMessage: state.message);
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+    return WillPopScope(
+      onWillPop: () async {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text('Exit Quiz'),
+                content: const Text('Are you sure to exit the quiz?'),
+                actions: [
+                  QuizzTextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    label: 'No',
+                  ),
+                  QuizzTextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                    label: 'Yes',
+                  ),
+                ],
+              );
+            });
+
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Quiz Page'),
+        ),
+        body: BlocConsumer<SetupQuizBloc, SetupQuizState>(
+          listener: (context, state) {
+            if (state is QuizLoaded) {
+              context.read<QuizBloc>().add(InitQuiz(state.questions));
+            }
+          },
+          builder: (context, state) {
+            if (state is QuizLoaded) {
+              return QuizLoadedView(
+                questions: state.questions,
+              );
+            } else if (state is QuizLoadError) {
+              return QuizzErrorView(errorMessage: state.message);
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }
