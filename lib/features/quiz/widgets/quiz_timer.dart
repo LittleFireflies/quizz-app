@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pausable_timer/pausable_timer.dart';
 import 'package:quizz_app/features/quiz/bloc/quiz_bloc.dart';
 
 class QuizTimer extends StatefulWidget {
@@ -17,9 +16,9 @@ class QuizTimer extends StatefulWidget {
 }
 
 class _QuizTimerState extends State<QuizTimer> {
-  Timer? countdownTimer;
-  static const _quizDuration = Duration(seconds: 30);
-  Duration currentDuration = _quizDuration;
+  PausableTimer? countdownTimer;
+  static const _quizDuration = 30;
+  int currentCountdown = _quizDuration;
 
   @override
   void initState() {
@@ -28,40 +27,63 @@ class _QuizTimerState extends State<QuizTimer> {
   }
 
   void startTimer() {
-    countdownTimer = Timer.periodic(
+    countdownTimer = PausableTimer(
       const Duration(seconds: 1),
-      (timer) {
+      () {
         setCountdown();
       },
-    );
+    )..start();
+  }
+
+  void stopTimer() {
+    countdownTimer?.pause();
   }
 
   void resetTimer() {
-    setState(() => currentDuration = _quizDuration);
+    setState(() {
+      countdownTimer
+        ?..reset()
+        ..start();
+      currentCountdown = _quizDuration;
+    });
   }
 
   void setCountdown() {
     const reduceSecondsBy = 1;
     setState(() {
-      final seconds = currentDuration.inSeconds - reduceSecondsBy;
+      final seconds = currentCountdown - reduceSecondsBy;
       if (seconds < 0) {
         widget.onTimesUp();
-        resetTimer();
       } else {
-        currentDuration = Duration(seconds: seconds);
+        currentCountdown = seconds;
+        countdownTimer
+          ?..reset()
+          ..start();
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<QuizBloc, QuizState>(
-      listenWhen: (p, c) => p.activeQuestionIndex != c.activeQuestionIndex,
-      listener: (context, state) {
-        resetTimer();
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<QuizBloc, QuizState>(
+          listenWhen: (p, c) => p.activeQuestionIndex != c.activeQuestionIndex,
+          listener: (context, state) {
+            resetTimer();
+          },
+        ),
+        BlocListener<QuizBloc, QuizState>(
+          listenWhen: (p, c) =>
+              c.selectedAnswer.isNotEmpty &&
+              p.selectedAnswer != c.selectedAnswer,
+          listener: (context, state) {
+            stopTimer();
+          },
+        ),
+      ],
       child: LinearProgressIndicator(
-        value: currentDuration.inSeconds / _quizDuration.inSeconds,
+        value: currentCountdown / _quizDuration,
         color: Theme.of(context).colorScheme.secondary,
       ),
     );

@@ -53,23 +53,55 @@ class QuizLoadedView extends StatelessWidget {
                       const SizedBox(height: 16),
                       AnswerCard(
                         text: activeQuestion.option1,
+                        correctAnswer: activeQuestion.correctAnswer,
                         selected:
                             activeQuestion.option1 == state.selectedAnswer,
+                        onTap: () {
+                          if (state.selectedAnswer.isEmpty) {
+                            context
+                                .read<QuizBloc>()
+                                .add(SelectAnswer(activeQuestion.option1));
+                          }
+                        },
                       ),
                       AnswerCard(
                         text: activeQuestion.option2,
+                        correctAnswer: activeQuestion.correctAnswer,
                         selected:
                             activeQuestion.option2 == state.selectedAnswer,
+                        onTap: () {
+                          if (state.selectedAnswer.isEmpty) {
+                            context
+                                .read<QuizBloc>()
+                                .add(SelectAnswer(activeQuestion.option2));
+                          }
+                        },
                       ),
                       AnswerCard(
                         text: activeQuestion.option3,
+                        correctAnswer: activeQuestion.correctAnswer,
                         selected:
                             activeQuestion.option3 == state.selectedAnswer,
+                        onTap: () {
+                          if (state.selectedAnswer.isEmpty) {
+                            context
+                                .read<QuizBloc>()
+                                .add(SelectAnswer(activeQuestion.option3));
+                          }
+                        },
                       ),
                       AnswerCard(
                         text: activeQuestion.option4,
+                        correctAnswer: activeQuestion.correctAnswer,
                         selected:
                             activeQuestion.option4 == state.selectedAnswer,
+                        onTap: () {
+                          if (state.selectedAnswer.isEmpty) {
+                            context
+                                .read<QuizBloc>()
+                                .add(SelectAnswer(activeQuestion.option4));
+                          }
+                        },
                       ),
                     ],
                   ),

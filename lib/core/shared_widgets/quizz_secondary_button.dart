@@ -5,10 +5,12 @@ class QuizzSecondaryButton extends StatelessWidget {
     Key? key,
     required this.label,
     required this.onPressed,
+    this.trailing,
   }) : super(key: key);
 
   final String label;
   final VoidCallback onPressed;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,16 @@ class QuizzSecondaryButton extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
         ),
       ),
-      child: Text(label),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Flexible(child: Text(label)),
+          if (trailing != null) ...[
+            const SizedBox(width: 8),
+            trailing!,
+          ],
+        ],
+      ),
     );
   }
 }
