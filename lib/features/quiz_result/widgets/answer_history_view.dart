@@ -29,14 +29,19 @@ class AnswerHistoryView extends StatelessWidget {
                   Icons.close,
                   color: Theme.of(context).colorScheme.red,
                 ),
-                Text(answer.answer == '' ? 'No Answer' : answer.answer),
+                Flexible(
+                  child:
+                      Text(answer.answer == '' ? 'No Answer' : answer.answer),
+                ),
                 const SizedBox(width: 8),
               ],
               Icon(
                 Icons.check,
                 color: Theme.of(context).colorScheme.green,
               ),
-              Text(answer.correctAnswer),
+              Flexible(
+                child: Text(answer.correctAnswer),
+              ),
             ],
           ),
         ],
