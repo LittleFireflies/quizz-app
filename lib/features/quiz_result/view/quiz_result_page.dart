@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:quizz_app/core/constants.dart';
 import 'package:quizz_app/features/quiz/models/answer_history.dart';
 import 'package:quizz_app/features/quiz_result/widgets/answer_history_view.dart';
 import 'package:quizz_app/theme/color_scheme.dart';
@@ -85,6 +86,6 @@ class QuizResultPage extends StatelessWidget {
   }
 
   String _getShareText(List<AnswerHistory> results) {
-    return 'Hey, I got ${results.getCorrectAnswerCount()}/${results.length} score on Quizz App. How about you?';
+    return 'Hey, I got ${results.getCorrectAnswerCount()}/${results.length} score on Quizz App. How about you?\n\n\nYou can download the app here: $appLink';
   }
 }

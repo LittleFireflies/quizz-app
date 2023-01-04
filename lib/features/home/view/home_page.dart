@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/core/constants.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_primary_button.dart';
 import 'package:quizz_app/core/shared_widgets/quizz_secondary_button.dart';
+import 'package:quizz_app/core/shared_widgets/quizz_text_button.dart';
 import 'package:quizz_app/features/quiz/view/quiz_page.dart';
 import 'package:quizz_app/features/topics/view/topics_page.dart';
 import 'package:quizz_app/theme/typography.dart';
+import 'package:share_plus/share_plus.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = 'homePage';
@@ -48,6 +51,19 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, TopicsPage.routeName);
               },
               label: 'TOPICS',
+            ),
+            const SizedBox(height: 16),
+            QuizzTextButton(
+              onPressed: () {
+                Share.share(
+                  "Hey 👋 Let's play Quizz App!\nYou can download the app here: $appLink",
+                );
+              },
+              label: 'Share',
+              leading: const Icon(Icons.share),
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.onBackground,
+              ),
             ),
           ],
         ),

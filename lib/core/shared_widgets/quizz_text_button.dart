@@ -5,21 +5,33 @@ class QuizzTextButton extends StatelessWidget {
     Key? key,
     required this.label,
     required this.onPressed,
-    this.trailing,
+    this.leading,
+    this.style,
   }) : super(key: key);
 
   final String label;
   final VoidCallback onPressed;
-  final Widget? trailing;
+  final Widget? leading;
+  final ButtonStyle? style;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      style: TextButton.styleFrom(
-        foregroundColor: Theme.of(context).colorScheme.secondary,
+      style: style ??
+          TextButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.secondary,
+          ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (leading != null) ...[
+            leading!,
+            const SizedBox(width: 8),
+          ],
+          Flexible(child: Text(label)),
+        ],
       ),
-      child: Text(label),
     );
   }
 }
