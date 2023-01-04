@@ -34,7 +34,8 @@ void main() {
       'should display ListView '
       'when state is TopicsLoaded',
       (tester) async {
-        when(() => topicsBloc.state).thenReturn(const TopicsLoaded(topics));
+        when(() => topicsBloc.state)
+            .thenReturn(const TopicsLoaded(topics: topics));
 
         await tester.pumpWidget(
           MaterialApp(

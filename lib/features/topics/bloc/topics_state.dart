@@ -13,11 +13,25 @@ class TopicsLoading extends TopicsState {
 
 class TopicsLoaded extends TopicsState {
   final List<Topic> topics;
+  final bool isSearchActive;
 
-  const TopicsLoaded(this.topics);
+  const TopicsLoaded({
+    required this.topics,
+    this.isSearchActive = false,
+  });
 
   @override
-  List<Object?> get props => [topics];
+  List<Object?> get props => [topics, isSearchActive];
+
+  TopicsLoaded copyWith({
+    List<Topic>? topics,
+    bool? isSearchActive,
+  }) {
+    return TopicsLoaded(
+      topics: topics ?? this.topics,
+      isSearchActive: isSearchActive ?? this.isSearchActive,
+    );
+  }
 }
 
 class TopicsLoadedEmpty extends TopicsState {

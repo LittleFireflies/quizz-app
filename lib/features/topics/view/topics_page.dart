@@ -22,16 +22,65 @@ class TopicsPage extends StatelessWidget {
   }
 }
 
-class TopicsView extends StatelessWidget {
+class TopicsView extends StatefulWidget {
   const TopicsView({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<TopicsView> createState() => _TopicsViewState();
+}
+
+class _TopicsViewState extends State<TopicsView> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(() {
+      context.read<TopicsBloc>().add(SubmitSearchQuery(_searchController.text));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Topics'),
+        title: BlocBuilder<TopicsBloc, TopicsState>(
+          buildWhen: (p, c) => c is TopicsLoaded,
+          builder: (context, state) {
+            if (state is TopicsLoaded && state.isSearchActive) {
+              return TextField(
+                controller: _searchController,
+                autofocus: true,
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  hintText: 'Search topics',
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      if (_searchController.text.isEmpty) {
+                        context.read<TopicsBloc>().add(const ExitSearchMode());
+                      } else {
+                        _searchController.clear();
+                      }
+                    },
+                    icon: const Icon(Icons.clear),
+                  ),
+                ),
+              );
+            }
+
+            return const Text('Topics');
+          },
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<TopicsBloc>().add(const EnterSearchMode());
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -70,5 +119,11 @@ class TopicsView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 }

@@ -33,7 +33,7 @@ void main() {
       act: (bloc) => bloc.add(const LoadTopics()),
       expect: () => [
         const TopicsLoading(),
-        const TopicsLoaded(topics),
+        const TopicsLoaded(topics: topics),
       ],
       verify: (_) {
         verify(() => quizRepository.loadTopics()).called(1);
@@ -74,6 +74,65 @@ void main() {
       verify: (_) {
         verify(() => quizRepository.loadTopics()).called(1);
       },
+    );
+
+    blocTest<TopicsBloc, TopicsState>(
+      'should emit isSearchActive = true '
+      'when EnterSearchMode event is added ',
+      build: () => topicsBloc,
+      seed: () => const TopicsLoaded(topics: topics),
+      act: (bloc) => bloc.add(const EnterSearchMode()),
+      expect: () => [
+        const TopicsLoaded(
+          topics: topics,
+          isSearchActive: true,
+        ),
+      ],
+    );
+
+    blocTest<TopicsBloc, TopicsState>(
+      'should emit isSearchActive = false '
+      'when ExitSearchMode event is added ',
+      build: () => topicsBloc,
+      seed: () => const TopicsLoaded(
+        topics: topics,
+      ),
+      act: (bloc) => bloc
+        ..add(const EnterSearchMode())
+        ..add(const ExitSearchMode()),
+      expect: () => [
+        const TopicsLoaded(
+          topics: topics,
+          isSearchActive: true,
+        ),
+        const TopicsLoaded(
+          topics: topics,
+          isSearchActive: false,
+        ),
+      ],
+    );
+
+    blocTest<TopicsBloc, TopicsState>(
+      'should emit filtered topics '
+      'when SubmitSearchQuery event is added ',
+      build: () => topicsBloc,
+      seed: () => const TopicsLoaded(
+        topics: topics,
+      ),
+      act: (bloc) => bloc
+        ..add(const EnterSearchMode())
+        ..add(const SubmitSearchQuery('topic a')),
+      wait: const Duration(milliseconds: 500),
+      expect: () => [
+        const TopicsLoaded(
+          topics: topics,
+          isSearchActive: true,
+        ),
+        const TopicsLoaded(
+          topics: [TestModels.topicA],
+          isSearchActive: true,
+        ),
+      ],
     );
   });
 }
