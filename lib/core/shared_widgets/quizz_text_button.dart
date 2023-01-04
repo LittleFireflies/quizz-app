@@ -23,6 +23,7 @@ class QuizzTextButton extends StatelessWidget {
             foregroundColor: Theme.of(context).colorScheme.secondary,
           ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (leading != null) ...[
