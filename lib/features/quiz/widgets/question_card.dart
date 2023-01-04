@@ -23,6 +23,11 @@ class QuestionCard extends StatelessWidget {
               style: Theme.of(context).textTheme.quizTitle,
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 8),
+            Visibility(
+              visible: question.image != null,
+              child: Image.network(question.image ?? ''),
+            ),
           ],
         ),
       ),

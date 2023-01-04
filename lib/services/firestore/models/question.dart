@@ -9,6 +9,7 @@ class Question extends Equatable {
   final String option3;
   final String option4;
   final String correctAnswer;
+  final String? image;
 
   const Question({
     required this.key,
@@ -18,31 +19,23 @@ class Question extends Equatable {
     required this.option3,
     required this.option4,
     required this.correctAnswer,
+    this.image,
   });
-
-  factory Question.placeholder() {
-    return const Question(
-      key: 'key',
-      question: 'Question',
-      option1: 'option1',
-      option2: 'option2',
-      option3: 'option3',
-      option4: 'option4',
-      correctAnswer: 'correctAnswer',
-    );
-  }
 
   factory Question.fromFirestore(
     QueryDocumentSnapshot<Map<String, dynamic>> doc,
   ) {
+    final map = doc.data();
+
     return Question(
       key: doc.id,
-      question: doc['question'],
-      option1: doc['option_1'],
-      option2: doc['option_2'],
-      option3: doc['option_3'],
-      option4: doc['option_4'],
-      correctAnswer: doc['correct_answer'],
+      question: map['question'],
+      option1: map['option_1'],
+      option2: map['option_2'],
+      option3: map['option_3'],
+      option4: map['option_4'],
+      correctAnswer: map['correct_answer'],
+      image: map['image'],
     );
   }
 
@@ -55,5 +48,6 @@ class Question extends Equatable {
         option3,
         option4,
         correctAnswer,
+        image,
       ];
 }
