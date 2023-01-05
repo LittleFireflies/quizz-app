@@ -109,7 +109,12 @@ class _TopicsViewState extends State<TopicsView> {
             } else if (state is TopicsLoadedEmpty) {
               return const TopicsEmptyView();
             } else if (state is TopicsLoadError) {
-              return QuizzErrorView(errorMessage: state.message);
+              return QuizzErrorView(
+                errorMessage: state.message,
+                onRetryButtonPressed: () {
+                  context.read<TopicsBloc>().add(const LoadTopics());
+                },
+              );
             } else {
               return const Center(
                 child: CircularProgressIndicator(),

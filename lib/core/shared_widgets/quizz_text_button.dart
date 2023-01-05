@@ -10,7 +10,7 @@ class QuizzTextButton extends StatelessWidget {
   }) : super(key: key);
 
   final String label;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget? leading;
   final ButtonStyle? style;
 

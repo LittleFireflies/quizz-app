@@ -9,7 +9,7 @@ class QuizzSecondaryButton extends StatelessWidget {
   }) : super(key: key);
 
   final String label;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget? trailing;
 
   @override

@@ -29,13 +29,15 @@ class QuizPage extends StatelessWidget {
           create: (context) => QuizBloc(),
         ),
       ],
-      child: const QuizView(),
+      child: QuizView(topic: topic),
     );
   }
 }
 
 class QuizView extends StatelessWidget {
-  const QuizView({Key? key}) : super(key: key);
+  final String? topic;
+
+  const QuizView({Key? key, required this.topic}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +85,14 @@ class QuizView extends StatelessWidget {
                 questions: state.questions,
               );
             } else if (state is QuizLoadError) {
-              return QuizzErrorView(errorMessage: state.message);
+              return QuizzErrorView(
+                errorMessage: state.message,
+                onRetryButtonPressed: () {
+                  context
+                      .read<SetupQuizBloc>()
+                      .add(LoadQuizQuestion(topic: topic));
+                },
+              );
             } else {
               return const Center(
                 child: CircularProgressIndicator(),

@@ -35,7 +35,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: buildBlocProvider(
-              child: const QuizView(),
+              child: const QuizView(topic: 'topic'),
             ),
           ),
         );
@@ -53,7 +53,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: buildBlocProvider(
-              child: const QuizView(),
+              child: const QuizView(topic: 'topic'),
             ),
           ),
         );

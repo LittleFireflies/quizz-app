@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/core/shared_widgets/quizz_primary_button.dart';
 
 class QuizzErrorView extends StatelessWidget {
   final String errorMessage;
+  final VoidCallback? onRetryButtonPressed;
 
   const QuizzErrorView({
     Key? key,
     required this.errorMessage,
+    this.onRetryButtonPressed,
   }) : super(key: key);
 
   @override
@@ -24,6 +27,14 @@ class QuizzErrorView extends StatelessWidget {
           Text(
             errorMessage,
             textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 28),
+          Visibility(
+            visible: onRetryButtonPressed != null,
+            child: QuizzPrimaryButton(
+              label: 'Retry',
+              onPressed: onRetryButtonPressed,
+            ),
           ),
         ],
       ),
