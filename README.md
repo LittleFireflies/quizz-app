@@ -1,16 +1,6 @@
-# quizz_app
+# Quizz App
 
-A new Flutter project.
+Flutter Quiz App where you can test your knowledge on some trivias
 
-## Getting Started
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/14922088/210695283-937235f0-664e-43c0-9ba3-2480650637a7.png"><img width="300" alt="image" src="https://user-images.githubusercontent.com/14922088/210695359-5f565402-29ef-413e-b7fb-6d27520d7d2b.png"><img width="300" alt="image" src="https://user-images.githubusercontent.com/14922088/210695405-f04b0317-5b2c-45fc-862e-29eca8fea0af.png">
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
