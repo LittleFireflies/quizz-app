@@ -30,7 +30,7 @@ class QuizRepositoryImpl implements QuizRepository {
       final selectedIndex = <int>[];
       final random = Random();
       while (selectedIndex.length < maxQuestion) {
-        final index = random.nextInt(maxQuestion);
+        final index = random.nextInt(questions.length);
         if (!selectedIndex.contains(index)) {
           selectedIndex.add(index);
           filteredQuestion.add(questions[index]);
