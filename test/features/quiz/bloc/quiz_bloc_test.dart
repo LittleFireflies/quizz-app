@@ -29,6 +29,7 @@ void main() {
           questions: questions,
           activeQuestionIndex: 0,
           quizResult: const [],
+          answerOptions: TestModels.answerOptionsQuestion1,
         ),
       ],
     );
@@ -41,6 +42,7 @@ void main() {
         questions: questions,
         activeQuestionIndex: 0,
         quizResult: const [],
+        answerOptions: TestModels.answerOptionsQuestion1,
       ),
       act: (bloc) => bloc.add(const SelectAnswer('Apples')),
       expect: () => [
@@ -49,6 +51,7 @@ void main() {
           activeQuestionIndex: 0,
           selectedAnswer: 'Apples',
           quizResult: const [],
+          answerOptions: TestModels.answerOptionsQuestion1,
         ),
       ],
     );
@@ -64,6 +67,7 @@ void main() {
         activeQuestionIndex: 0,
         selectedAnswer: 'Apples',
         quizResult: const [],
+        answerOptions: TestModels.answerOptionsQuestion1,
       ),
       act: (bloc) => bloc.add(const OpenNextQuestion()),
       expect: () => [
@@ -78,6 +82,7 @@ void main() {
               correctAnswer: TestModels.question1.correctAnswer,
             ),
           ],
+          answerOptions: TestModels.answerOptionsQuestion2,
         ),
       ],
     );
@@ -100,6 +105,7 @@ void main() {
             correctAnswer: TestModels.question1.correctAnswer,
           ),
         ],
+        answerOptions: TestModels.answerOptionsQuestion2,
       ),
       act: (bloc) => bloc.add(const OpenNextQuestion()),
       expect: () => [
@@ -120,6 +126,7 @@ void main() {
               correctAnswer: TestModels.question2.correctAnswer,
             ),
           ],
+          answerOptions: TestModels.answerOptionsQuestion3,
         ),
       ],
     );
@@ -145,6 +152,7 @@ void main() {
             correctAnswer: TestModels.question2.correctAnswer,
           ),
         ],
+        answerOptions: TestModels.answerOptionsQuestion3,
       ),
       act: (bloc) => bloc.add(const SeeResults()),
       expect: () => [
@@ -171,6 +179,7 @@ void main() {
               correctAnswer: TestModels.question3.correctAnswer,
             ),
           ],
+          answerOptions: TestModels.answerOptionsQuestion3,
         ),
       ],
     );

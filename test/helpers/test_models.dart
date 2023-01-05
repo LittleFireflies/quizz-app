@@ -1,3 +1,4 @@
+import 'package:quizz_app/features/quiz/models/answer_option.dart';
 import 'package:quizz_app/services/firestore/models/question.dart';
 import 'package:quizz_app/services/firestore/models/topic.dart';
 
@@ -41,4 +42,61 @@ class TestModels {
     option4: 'Bond',
     correctAnswer: 'Molecule',
   );
+
+  static const answerOptionsQuestion1 = [
+    AnswerOption(
+      answer: 'Apples',
+      isCorrectAnswer: true,
+    ),
+    AnswerOption(
+      answer: 'Mangoes',
+      isCorrectAnswer: false,
+    ),
+    AnswerOption(
+      answer: 'Durians',
+      isCorrectAnswer: false,
+    ),
+    AnswerOption(
+      answer: 'Grapes',
+      isCorrectAnswer: false,
+    ),
+  ];
+
+  static const answerOptionsQuestion2 = [
+    AnswerOption(
+      answer: 'Sun',
+      isCorrectAnswer: false,
+    ),
+    AnswerOption(
+      answer: 'Moon',
+      isCorrectAnswer: true,
+    ),
+    AnswerOption(
+      answer: 'Mars',
+      isCorrectAnswer: false,
+    ),
+    AnswerOption(
+      answer: 'Jupiter',
+      isCorrectAnswer: false,
+    ),
+  ];
+
+  static const answerOptionsQuestion3 = [
+    AnswerOption(
+      answer: 'Proton',
+      isCorrectAnswer: false,
+    ),
+    AnswerOption(
+      answer: 'Neutron',
+      isCorrectAnswer: false,
+    ),
+    AnswerOption(
+      answer: 'Molecule',
+      isCorrectAnswer: true,
+    ),
+    AnswerOption(
+      answer: 'Bond',
+      isCorrectAnswer: false,
+    ),
+  ];
 }

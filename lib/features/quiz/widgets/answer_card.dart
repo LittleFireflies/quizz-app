@@ -14,7 +14,7 @@ class AnswerCard extends StatelessWidget {
 
   final String text;
   final bool selected;
-  final String correctAnswer;
+  final bool correctAnswer;
   final VoidCallback onTap;
 
   @override
@@ -22,7 +22,7 @@ class AnswerCard extends StatelessWidget {
     return selected
         ? QuizzSecondaryButton(
             label: text,
-            trailing: text == correctAnswer
+            trailing: correctAnswer
                 ? Icon(
                     Icons.check_circle_rounded,
                     color: Theme.of(context).colorScheme.green,
